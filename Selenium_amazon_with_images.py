@@ -5,6 +5,20 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 
 
+def Write_image(id_element,image_response):
+
+    image_folder = os.getcwd() + "\Amazon_result_image"
+
+    if os.path.exists(image_folder) == False:
+        os.mkdir(image_folder)
+                    
+    if image_response.status_code == 200:
+        with open(f'{image_folder}\\{id_element}.jpg', 'wb') as image_file:
+            image_file.write(image_response.content)
+                        
+    else:
+        print(f'Failed to download image-{name_element}')
+
 def Web_scraping():
     try:
         driver = webdriver.Firefox()
@@ -34,19 +48,13 @@ def Web_scraping():
 
                     image_element = ele.find_element(By.XPATH, ".//img[@class='s-image']").get_attribute("src")
                     file.write("Image url: "+image_element+"\n")
- 
+
                     image_response = requests.get(image_element)
-                    
-                    if image_response.status_code == 200:
-                        with open(f'{id_element}.jpg', 'wb') as image_file:
-                            image_file.write(image_response.content)
-                        
-                    else:
-                        print(f'Failed to download image-{name_element}')
+                    Write_image(id_element,image_response)                   
                         
                     id_element += 1
 
-                 except:
+                except:
                     continue
 
 
