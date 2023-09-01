@@ -5,7 +5,9 @@ from selenium.webdriver.common.by import By
 
 def Web_scraping():
     try:
-        driver = webdriver.Firefox()
+        options = Options() 
+        options.add_argument("-headless") 
+        driver = webdriver.Firefox(options=options)
         print("webdriver is open")
 
         with open("Search_result.txt", "w", encoding="utf-8") as file:

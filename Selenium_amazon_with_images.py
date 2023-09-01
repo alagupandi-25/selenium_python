@@ -3,6 +3,7 @@ import requests
 from pprint import pprint 
 from selenium import webdriver
 from selenium.webdriver.common.by import By
+from selenium.webdriver.firefox.options import Options
 
 
 def Write_image(id_element,image_response):
@@ -13,15 +14,17 @@ def Write_image(id_element,image_response):
         os.mkdir(image_folder)
                     
     if image_response.status_code == 200:
-        with open(f'{image_folder}\\{id_element}.jpg', 'wb') as image_file:
+        with open(f'{image_folder}\\{id_element}.png', 'wb') as image_file:
             image_file.write(image_response.content)
                         
     else:
-        print(f'Failed to download image-{name_element}')
+        print(f'Failed to download image-{id_element}')
 
 def Web_scraping():
     try:
-        driver = webdriver.Firefox()
+        options = Options() 
+        options.add_argument("-headless") 
+        driver = webdriver.Firefox(options=options)
         print("webdriver is open")
 
         with open("Amazon_result.txt", "w", encoding="utf-8") as file:
@@ -42,12 +45,12 @@ def Web_scraping():
             
                     name_element = ele.find_element(By.XPATH, ".//span[@class='a-size-medium a-color-base a-text-normal']").text
                     file.write(f"Product Name({id_element}) : "+ name_element+"\n")
+                    
+                    image_element = ele.find_element(By.XPATH, ".//img[@class='s-image']").get_attribute("src")
+                    file.write("Image url: "+image_element+"\n")
 
                     price_element = ele.find_element(By.XPATH, ".//span[@class='a-price-whole']").text
                     file.write("Product Price: "+ price_element+"\n")
-
-                    image_element = ele.find_element(By.XPATH, ".//img[@class='s-image']").get_attribute("src")
-                    file.write("Image url: "+image_element+"\n")
 
                     image_response = requests.get(image_element)
                     Write_image(id_element,image_response)                   

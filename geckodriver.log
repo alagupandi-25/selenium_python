@@ -1,0 +1,28 @@
+1693568027404	geckodriver	INFO	Listening on 127.0.0.1:61184
+1693568030357	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "--marionette" "-headless" "--remote-debugging-port" "6118 ... "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "C:\\Users\\ADMINI~1\\AppData\\Local\\Temp\\rust_mozprofile6J8Vxu"
+*** You are running in headless mode.
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1693568030946	Marionette	INFO	Marionette enabled
+Dynamically enable window occlusion 0
+1693568031075	Marionette	INFO	Listening on port 61200
+WebDriver BiDi listening on ws://127.0.0.1:61185
+Read port: 61200
+1693568031425	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+[GFX1-]: RenderCompositorSWGL failed mapping default framebuffer, no dt
+console.error: ({})
+DevTools listening on ws://127.0.0.1:61185/devtools/browser/80f1b190-dc4a-4f5c-8f3d-80e04af0bf8e
+JavaScript warning: https://www.amazon.in/s?k=gaming+monitor&crid=3MHDYZB2OO82H&sprefix=gaming+monitor%2Caps%2C298%20&ref=nb_sb_noss_1, line 9465: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+JavaScript warning: https://www.amazon.in/s?k=gaming+monitor&crid=3MHDYZB2OO82H&sprefix=gaming+monitor%2Caps%2C298+&ref=nb_sb_noss_1 line 7 > injectedScript, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+1693568047748	Marionette	INFO	Stopped listening on port 61200
+JavaScript warning: https://images-eu.ssl-images-amazon.com/images/I/41W974vG8QL._RC|71zzjyvEIHL.js,01F+A05ogQL.js,01phmzCOwJL.js,01eOvPdxG7L.js,71HGwLRNwQL.js,41306Iio4NL.js,115pV8Rl02L.js,01+pnQJuQ0L.js,21rDHgaooIL.js,41LFml+7fVL.js,51t-JTxfnwL.js,317BC63dC8L.js,11lEMI5MhIL.js,31c7Fn9h9gL.js,01LEzWzrPZL.js,01AqeWA7PKL.js_.js?AUIClients/NavDesktopUberAsset&ADj+mKrH#desktop.language-en.in.488400-T1.488413-T1.366740-T1.310484-T1.472106-T1, line 121: Script terminated by timeout at:
+onEnter/z<@https://images-eu.ssl-images-amazon.com/images/I/41W974vG8QL._RC|71zzjyvEIHL.js,01F+A05ogQL.js,01phmzCOwJL.js,01eOvPdxG7L.js,71HGwLRNwQL.js,41306Iio4NL.js,115pV8Rl02L.js,01+pnQJuQ0L.js,21rDHgaooIL.js,41LFml+7fVL.js,51t-JTxfnwL.js,317BC63dC8L.js,11lEMI5MhIL.js,31c7Fn9h9gL.js,01LEzWzrPZL.js,01AqeWA7PKL.js_.js?AUIClients/NavDesktopUberAsset&ADj+mKrH#desktop.language-en.in.488400-T1.488413-T1.366740-T1.310484-T1.472106-T1:121:173
+
+JavaScript warning: https://m.media-amazon.com/images/I/41JAtpZGw8L.js, line 1: Script terminated by timeout at:
+588/value/<@https://m.media-amazon.com/images/I/41JAtpZGw8L.js:1:11460
+value@https://m.media-amazon.com/images/I/41JAtpZGw8L.js:1:11461
+value@https://m.media-amazon.com/images/I/41JAtpZGw8L.js:1:10910
+o@https://m.media-amazon.com/images/I/41JAtpZGw8L.js:1:11592
+e@https://m.media-amazon.com/images/I/41JAtpZGw8L.js:1:11743
+
+Dynamically enable window occlusion 1
