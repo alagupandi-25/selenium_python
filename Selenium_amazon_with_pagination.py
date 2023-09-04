@@ -1,4 +1,5 @@
 import time
+import requests
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
@@ -29,7 +30,7 @@ def Web_scraping() -> None:
                     
                     content =  WebDriverWait(driver, 5).until(
                                     EC.presence_of_all_elements_located(
-                                        (By.CSS_SELECTOR, "div.sg-col-20-of-24")
+                                        (By.CSS_SELECTOR, "div.sg-col-20-of-24.s-result-item.s-asin.sg-col-0-of-12.sg-col-16-of-20")
                                     )
                                 )
 
@@ -40,20 +41,23 @@ def Web_scraping() -> None:
                     for ele in content:
 
                         try:
-                            
+
                             name_element = ele.find_element(By.XPATH, ".//span[@class='a-size-medium a-color-base a-text-normal']").text
-                            file.write(f"Product Name({id_element}) : "+ name_element+"\n")
+                            file.write(f"Product Name({page_number} : {id_element}) : "+ name_element+"\n")
                                     
                             image_element = ele.find_element(By.XPATH, ".//img[@class='s-image']").get_attribute("src")
                             file.write("Image url: "+image_element+"\n")
 
                             price_element = ele.find_element(By.XPATH, ".//span[@class='a-price-whole']").text
-                            file.write("Product Price: "+ price_element+"\n")              
-                                        
+                            file.write("Product Price: "+ price_element+"\n") 
+                            
+                            image_response = requests.get(image_element)             
+                                            
                             id_element += 1
-                                
+
                         except:
                             continue
+                            
                 
                 next_element = WebDriverWait(driver, 5).until(
                     EC.presence_of_element_located(
