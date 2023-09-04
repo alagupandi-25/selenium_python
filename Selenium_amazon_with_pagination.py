@@ -1,3 +1,4 @@
+import os
 import time
 import requests
 from selenium import webdriver
@@ -7,6 +8,20 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import TimeoutException
 from selenium.webdriver.firefox.options import Options
          
+         
+def Write_image(id_element : int ,image_response,page_number : int) -> None:
+
+    image_folder = os.getcwd() + "\Amazon_result_image"
+
+    if os.path.exists(image_folder) == False:
+        os.mkdir(image_folder)
+                
+    if image_response.status_code == 200:
+        with open(f'{image_folder}\\{page_number}-{id_element}.png', 'wb') as image_file:
+            image_file.write(image_response.content)
+                        
+    else:
+        print(f'Failed to download image-{id_element}')
 
 def Web_scraping() -> None:
     
@@ -51,7 +66,8 @@ def Web_scraping() -> None:
                             price_element = ele.find_element(By.XPATH, ".//span[@class='a-price-whole']").text
                             file.write("Product Price: "+ price_element+"\n") 
                             
-                            image_response = requests.get(image_element)             
+                            image_response = requests.get(image_element)
+                            Write_image(id_element ,image_response ,page_number)             
                                             
                             id_element += 1
 
@@ -69,6 +85,7 @@ def Web_scraping() -> None:
                 
                 print("page : ",page_number)
                 page_number = page_number + 1
+                
                 
         except TimeoutException:
             time.sleep(5)
