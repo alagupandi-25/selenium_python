@@ -4,9 +4,11 @@ import requests
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
+from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import TimeoutException
 from selenium.webdriver.firefox.options import Options
+import time
          
          
 def Write_image(id_element : int ,image_response,page_number : int) -> None:
@@ -27,13 +29,26 @@ def Web_scraping() -> None:
     
     try:
         
-        options = Options() 
-        options.add_argument("-headless") 
-        driver = webdriver.Firefox(options=options)
+        """options = Options() 
+        options.add_argument("-headless") """
+        driver = webdriver.Firefox()
         print("webdriver is open")
 
-        driver.get("
-                   ")
+        driver.get("https://www.amazon.in/")
+
+        input_var = str(input("Enter the Keyword to extract in amazon : "))
+
+        search_bar =  WebDriverWait(driver, 5).until(
+                            EC.presence_of_element_located(
+                                (By.XPATH, '/html/body/div[1]/header/div/div[1]/div[2]/div/form/div[2]/div[1]/input')
+                            )
+                        )
+        search_bar.send_keys(input_var)
+        search_bar.send_keys(Keys.RETURN)
+
+        time.sleep(5)
+        
+        driver.get("https://www.amazon.in/s?k=gaming+monitor&crid=3MHDYZB2OO82H&sprefix=gaming+monitor%2Caps%2C298 &ref=nb_sb_noss_1")
         
         page_number : int = 1
           
@@ -41,7 +56,7 @@ def Web_scraping() -> None:
 
             while True:
                 
-                with open("Amazon_result.txt", "a", encoding="utf-8") as file:
+                with open("Amazon_result.txt", "a+", encoding="utf-8") as file:
                     print("Started to the file")
                     
                     content =  WebDriverWait(driver, 5).until(
@@ -91,7 +106,7 @@ def Web_scraping() -> None:
         except TimeoutException:
             time.sleep(5)
             print("no next eleement")
-
+        
     finally:
         driver.quit()
         print("webdriver is close")
@@ -103,5 +118,3 @@ if __name__ == "__main__":
     print(f"--------------------------------------{title}--------------------------------------")
 
     Web_scraping()
-            
-
