@@ -29,9 +29,9 @@ def Web_scraping() -> None:
     
     try:
         
-        """options = Options() 
-        options.add_argument("-headless") """
-        driver = webdriver.Firefox()
+        options = Options() 
+        options.add_argument("-headless") 
+        driver = webdriver.Firefox(options=options)
         print("webdriver is open")
 
         driver.get("https://www.amazon.in/")
